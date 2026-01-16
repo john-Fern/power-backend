@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: ${DB_URL} #jdbc:postgresql://localhost:5433/postgres
+#    username: postgres
+#    password: postgres123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: public
+
+server:
+  port: 8080
+
+#spring:
+#  datasource:
+#    url: ep-mute-king-acfbyuqq-pooler.sa-east-1.aws.neon.tech
+#    username: neondb_owner
+#    password: npg_P1vqybgx8JVh
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
