@@ -1,7 +1,7 @@
 package com.power.backend.controller;
 
-import com.power.backend.dto.LoginRequest;
-import com.power.backend.repository.UsuarioRepository;
+import com.power.backend.modules.usuario.dto.LoginRequest;
+import com.power.backend.modules.usuario.repository.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-import com.power.backend.dto.RegisterRequest;
-import com.power.backend.entity.Usuario;
-import org.springframework.http.HttpStatus;
+import com.power.backend.modules.usuario.dto.RegisterRequest;
+import com.power.backend.modules.usuario.model.Usuario;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${DB_URL} #jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://ep-mute-king-acfbyuqq-pooler.sa-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_P1vqybgx8JVh&sslmode=require&channelBinding=require #jdbc:postgresql://localhost:5433/postgres
 #    username: postgres
 #    password: postgres123
 
