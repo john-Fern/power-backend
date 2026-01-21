@@ -4,10 +4,16 @@ import com.power.backend.modules.usuario.model.Usuario;
 import com.power.backend.modules.direccion.model.Direccion;
 import com.power.backend.modules.producto.model.Producto;
 import jakarta.persistence.*;
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "ordenes")
 public class Orden {
 
@@ -43,77 +49,11 @@ public class Orden {
     @Column(name = "fecha_orden")
     private LocalDateTime fechaOrden;
 
-    public Orden() {}
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Direccion getDireccionEnvio() {
-        return direccionEnvio;
-    }
-
-    public void setDireccionEnvio(Direccion direccionEnvio) {
-        this.direccionEnvio = direccionEnvio;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public LocalDateTime getFechaOrden() {
-        return fechaOrden;
-    }
-
-    public void setFechaOrden(LocalDateTime fechaOrden) {
-        this.fechaOrden = fechaOrden;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    @PrePersist
+    public void prePersist() {
+        if (fechaOrden == null)
+            fechaOrden = LocalDateTime.now();
+        if (estado == null)
+            estado = "PENDIENTE";
     }
 }

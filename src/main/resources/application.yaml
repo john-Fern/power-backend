@@ -1,3 +1,26 @@
 spring:
-  profiles:
-    active: prod
+  application:
+    name: power-backend
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # Development: updates schema to match entities
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  expiration: ${JWT_EXPIRATION_MS:86400000} # 1 day
+
+server:
+  port: 8080
+  error:
+    include-message: always
