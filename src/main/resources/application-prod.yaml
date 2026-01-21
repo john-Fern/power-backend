@@ -1,26 +1,24 @@
 spring:
+  application:
+    name: power-backend
   datasource:
-    url: jdbc:postgresql://ep-mute-king-acfbyuqq-pooler.sa-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_P1vqybgx8JVh&sslmode=require&channelBinding=require #jdbc:postgresql://localhost:5433/postgres
-#    username: postgres
-#    password: postgres123
-
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: validate # Production safe: validates schema matches entities
+    show-sql: false
     properties:
       hibernate:
-        default_schema: public
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION_MS:86400000} # 1 day
 
 server:
   port: 8080
-
-#spring:
-#  datasource:
-#    url: ep-mute-king-acfbyuqq-pooler.sa-east-1.aws.neon.tech
-#    username: neondb_owner
-#    password: npg_P1vqybgx8JVh
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: update

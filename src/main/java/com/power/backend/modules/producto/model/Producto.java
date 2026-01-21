@@ -4,8 +4,14 @@ import com.power.backend.modules.categoria.model.Categoria;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "productos")
 public class Producto {
 
@@ -19,6 +25,9 @@ public class Producto {
 
     @Column(name = "descripcion", length = 500)
     private String descripcion;
+
+    @Column(name = "imagen_url", length = 255)
+    private String imagenUrl;
 
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
@@ -39,79 +48,13 @@ public class Producto {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    public Producto() {}
-
-    public Boolean getActivo() {
-        return activo;
+    @PrePersist
+    public void prePersist() {
+        if (fechaCreacion == null)
+            fechaCreacion = LocalDateTime.now();
+        if (activo == null)
+            activo = true;
+        if (destacado == null)
+            destacado = false;
     }
-
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Boolean getDestacado() {
-        return destacado;
-    }
-
-    public void setDestacado(Boolean destacado) {
-        this.destacado = destacado;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-
 }

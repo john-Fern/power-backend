@@ -3,84 +3,25 @@ package com.power.backend.modules.producto.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
-public class ProductoRequest {
+import lombok.Builder;
 
-    @NotBlank
-    private String nombre;
+@Builder
+public record ProductoRequest(
+        @NotBlank(message = "El nombre es obligatorio") @Size(max = 120) String nombre,
 
-    private String descripcion;
+        @Size(max = 500) String descripcion,
 
-    @NotNull
-    @Positive
-    private BigDecimal precio;
+        @Size(max = 255) String imagenUrl,
 
-    @NotNull
-    @Positive
-    private Integer stock;
+        @NotNull(message = "El precio es obligatorio") @Positive BigDecimal precio,
 
-    @NotNull
-    private Integer categoriaId;
+        @NotNull(message = "El stock es obligatorio") @Positive Integer stock,
 
-    private boolean activo = true;
-    private boolean esDestacado = false;
+        Boolean destacado,
+        Boolean activo,
 
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public Integer getCategoriaId() {
-        return categoriaId;
-    }
-
-    public void setCategoriaId(Integer categoriaId) {
-        this.categoriaId = categoriaId;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public boolean isEsDestacado() {
-        return esDestacado;
-    }
-
-    public void setEsDestacado(boolean esDestacado) {
-        this.esDestacado = esDestacado;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+        @NotNull(message = "La categoría es obligatoria") Integer idCategoria) {
 }

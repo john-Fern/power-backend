@@ -3,8 +3,14 @@ package com.power.backend.modules.mensajecontacto.model;
 import com.power.backend.modules.usuario.model.Usuario;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "mensajes_contacto")
 public class MensajeContacto {
 
@@ -35,70 +41,9 @@ public class MensajeContacto {
     @Column(name = "fecha_envio")
     private LocalDateTime fechaEnvio;
 
-    public MensajeContacto() {}
-
-    public Boolean getAceptaPrivacidad() {
-        return aceptaPrivacidad;
+    @PrePersist
+    public void prePersist() {
+        if (fechaEnvio == null)
+            fechaEnvio = LocalDateTime.now();
     }
-
-    public void setAceptaPrivacidad(Boolean aceptaPrivacidad) {
-        this.aceptaPrivacidad = aceptaPrivacidad;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDateTime getFechaEnvio() {
-        return fechaEnvio;
-    }
-
-    public void setFechaEnvio(LocalDateTime fechaEnvio) {
-        this.fechaEnvio = fechaEnvio;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
 }
