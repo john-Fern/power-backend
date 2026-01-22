@@ -46,7 +46,7 @@ public class SecurityConfig {
         org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
         // Allow common frontend ports (React, Vue, Angular, etc.)
         configuration.setAllowedOrigins(
-                java.util.List.of("https://sa-ha-1-kv1y.vercel.app/", "http://localhost:3000", "http://localhost:4200", "http://localhost:5173",
+                java.util.List.of("https://power-rocket-front-test.vercel.app", "https://sa-ha-1-kv1y.vercel.app/", "http://localhost:3000", "http://localhost:4200", "http://localhost:5173",
                         "http://127.0.0.1:5500", "http://localhost:5500"));
         configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(java.util.List.of("Authorization", "Content-Type"));
@@ -68,4 +68,5 @@ public class SecurityConfig {
         return cfg.getAuthenticationManager();
     }
 }
+
 
